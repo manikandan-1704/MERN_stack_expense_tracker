@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Expense = () => {
+const Income = () => {
     return (
-        <div>Expense</div>
+        <div>Income</div>
     )
 }
 
-export default Expense
+export default Income

@@ -25,7 +25,16 @@ exports.addIncome = async(req, res) => {
 }
 }
 
-exports.getAllIncome = async(req, res) => {}
+exports.getAllIncome = async(req, res) => {
+    const userId = req.user.id;
+
+    try{
+        const income = await Income.find({userId}).sort({ date: -1 });
+        res.json(income);
+    }catch(err){
+        res.status(500).json({message: "Server Error"});
+    }
+}
 
 exports.deleteIncome = async(req, res) => {}
 

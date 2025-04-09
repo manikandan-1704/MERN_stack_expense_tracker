@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardLayout from '../../components/layouts/DashboardLayout'
 import IncomeOverview from '../../components/Income/IncomeOverview';
+import axiosInstance from '../../utils/axiosInstance';
+import { API_PATHS } from '../../utils/apiPath';
 
 const Income = () => {
     const [incomeData, setIncomeData] = useState([]);
@@ -13,7 +15,24 @@ const Income = () => {
     const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false);
 
     //Get all income details
-    const fetchIncomeDetails = async () => {};
+    const fetchIncomeDetails = async () => {
+        if(loading) return;
+
+        setLoading(true);
+
+        try{
+            const response = await axiosInstance.get(
+                `${API_PATHS.INCOME.GET_ALL_INCOME}`
+            );
+            if(response.data){
+                setIncomeData(response.data);
+            }
+        }catch(error){
+            console.log("Something Went Wrong. Please try again", error);
+        }finally{
+            setLoading(false);
+        }
+    };
 
     // Handle Add Income
     const handleAddIncome = async (income) => {};
@@ -24,6 +43,10 @@ const Income = () => {
     // Handle Download income details
     const handleDownloadIncomeDetails = async () => {};
 
+    useEffect(() => {
+        fetchIncomeDetails();
+        return() => {};
+    },[]);
     return (
         <DashboardLayout activeMenu="Income">
             <div className='my-5 mx-auto'>

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import DashboardLayout from '../../components/layouts/DashboardLayout'
 
 const Income = () => {
+    const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false);
     return (
         <DashboardLayout activeMenu="Income">
             <div className='my-5 mx-auto'>

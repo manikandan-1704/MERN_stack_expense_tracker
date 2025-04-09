@@ -5,6 +5,7 @@ import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPath';
 import Modal from '../../components/layouts/Modal';
 import AddIncomeForm from '../../components/Income/AddIncomeForm';
+import toast from 'react-hot-toast';
 
 const Income = () => {
     const [incomeData, setIncomeData] = useState([]);
@@ -46,7 +47,7 @@ const Income = () => {
             return;
         }
 
-        if(!amount || isNan(amount) || Number(amount) <=0){
+        if(!amount || isNaN(amount) || Number(amount) <=0){
             toast.error("Amount should be a valid number greater than 0")
             return;
         }

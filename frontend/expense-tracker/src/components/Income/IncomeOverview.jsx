@@ -1,6 +1,6 @@
 import React from 'react'
 
-const IncomeOverview = () => {
+const IncomeOverview = ({ transactions, onAddIncome }) => {
     return (
         <div>IncomeOverview</div>
     )

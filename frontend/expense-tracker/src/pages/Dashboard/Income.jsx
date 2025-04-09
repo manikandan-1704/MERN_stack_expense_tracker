@@ -95,6 +95,14 @@ const Income = () => {
                             onAddIncome={() => setOpenAddIncomeModal(true)}
                         />
                     </div>
+                    <IncomeList
+                        transactions={incomeData}
+                        onDelete={(id) =>{
+                            setOpenDeleteAlert({show: true, data: id});
+                        } 
+                        }
+                        onDownload={handleDownloadIncomeDetails}
+                        />
                 </div>
                 <Modal
                     isOpen={openAddIncomeModal}

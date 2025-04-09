@@ -6,6 +6,7 @@ import { API_PATHS } from '../../utils/apiPath';
 import Modal from '../../components/layouts/Modal';
 import AddIncomeForm from '../../components/Income/AddIncomeForm';
 import toast from 'react-hot-toast';
+import IncomeList from '../../components/Income/IncomeList';
 
 const Income = () => {
     const [incomeData, setIncomeData] = useState([]);

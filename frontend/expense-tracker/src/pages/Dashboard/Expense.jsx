@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import ExpenseOverview from '../../components/Expense/ExpenseOverview';
 import AddExpenseForm from '../../components/Expense/AddExpenseForm';
 import Modal from '../../components/layouts/Modal';
+import ExpenseList from '../../components/Expense/ExpenseList';
 
 const Expense = () => {
     userUserAuth();
@@ -109,7 +110,7 @@ const Expense = () => {
                             onExpenseIncome={() => setOpenAddExpenseModal(true)}
                         />
                     </div>
-                    <ExpenseList 
+                    <ExpenseList
                         transactions={expenseData}
                         onDelete={(id) => {
                             setOpenDeleteAlert({show: true, data: id});

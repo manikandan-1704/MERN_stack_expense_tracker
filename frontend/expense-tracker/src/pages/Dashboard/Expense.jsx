@@ -3,6 +3,7 @@ import { userUserAuth } from '../../hooks/useUserAuth';
 import DashboardLayout from '../../components/layouts/DashboardLayout';
 import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPath';
+import toast from 'react-hot-toast';
 
 const Expense = () => {
     userUserAuth();
@@ -35,13 +36,13 @@ const Expense = () => {
         }
     };
 
-    // Handle Add Income
-    const handleAddIncome = async (income) => {
-        const { source, amount, date, icon } = income;
+    // Handle Add Expense
+    const handleAddExpense = async (expense) => {
+        const { category, amount, date, icon } = expense;
 
         // Validation Checks
-        if(!source.trim()){
-            toast.error("Source is required");
+        if(!category.trim()){
+            toast.error("Category is required");
             return;
         }
 
@@ -56,18 +57,18 @@ const Expense = () => {
         }
 
         try {
-            await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
-                source,
+            await axiosInstance.post(API_PATHS.EXPENSE.ADD_EXPENSE, {
+                category,
                 amount,
                 date,
                 icon
             });
-            setOpenAddIncomeModal(false);
-            toast.success("Income added sucessfully");
-            fetchIncomeDetails();
+            setOpenAddExpenseModal(false);
+            toast.success("Expense added sucessfully");
+            fetchExpenseDetails();
         }catch (error){
             console.error(
-                "Error adding income:",
+                "Error adding expense:",
                 error.response?.data?.message || error.message
             );
         }

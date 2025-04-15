@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { userUserAuth } from '../../hooks/useUserAuth';
 import DashboardLayout from '../../components/layouts/DashboardLayout';
 import axiosInstance from '../../utils/axiosInstance';
 import { API_PATHS } from '../../utils/apiPath';
 import toast from 'react-hot-toast';
+import ExpenseOverview from '../../components/Expense/ExpenseOverview';
 
 const Expense = () => {
     userUserAuth();
@@ -73,10 +74,24 @@ const Expense = () => {
             );
         }
     };
+
+    useEffect(() => {
+        fetchExpenseDetails();
+
+        return () => {};
+    }, []);
     return (
         <DashboardLayout activeMenu="Expense">
             <div className='my-5 mx-auto'>
-        </div>
+                <div className='grid grid-cols-1 gap-6'>
+                    <div className=''>
+                        <ExpenseOverview
+                            transactions={expenseData}
+                            onExpenseIncome={() => setOpenAddExpenseModal(true)}
+                        />
+                    </div>
+                </div>
+            </div>
         </DashboardLayout>
     )
 }

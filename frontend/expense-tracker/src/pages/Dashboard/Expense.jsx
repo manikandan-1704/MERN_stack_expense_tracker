@@ -77,6 +77,23 @@ const Expense = () => {
         }
     };
 
+       // Delete Expense
+       const deleteExpense = async (id) => {
+        try{
+            await axiosInstance.delete(API_PATHS.EXPENSE.DELETE_EXPENSE(id))
+            setOpenDeleteAlert({show: false, data: null});
+            toast.success("Expense deleted successfully");
+            fetchExpenseDetails();
+        } catch(error){
+            console.error(
+                "Error deleting Expense",
+                error.response?.data?.message || error.message
+            );
+        }
+    };
+
+    // Handle Download expense details
+    const handleDownloadExpenseDetails = async () => {};
     useEffect(() => {
         fetchExpenseDetails();
 
@@ -92,6 +109,13 @@ const Expense = () => {
                             onExpenseIncome={() => setOpenAddExpenseModal(true)}
                         />
                     </div>
+                    <ExpenseList 
+                        transactions={expenseData}
+                        onDelete={(id) => {
+                            setOpenDeleteAlert({show: true, data: id});
+                        }}
+                        onDownload={handleDownloadExpenseDetails}
+                        />
                 </div>
                 <Modal
                     isOpen={openAddExpenseModal}

@@ -31,4 +31,4 @@ A full-stack Expense Tracker built with **ReactJS** for the frontend and **Node.
 **Backend:** Node.js, Express, MongoDB
 
 
-## ✨ Happy Coding! 🚀
+## ✨ Happy Coding!
